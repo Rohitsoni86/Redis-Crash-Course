@@ -1,0 +1,1 @@
+export const getKeyName = (...args: string[]) => `swiggy:${args.join(':')}`

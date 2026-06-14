@@ -2,12 +2,16 @@ import express from 'express';
 import { validate } from '../middlewares/validate.js';
 import { RestaurantSchema, type TRestaurant } from '../schemas/restaurants.js';
 import { nanoid } from 'zod';
+import { initializeRedisClient } from '../utils/redis-client.js';
 
 const router = express.Router();
 
 router.post('/', validate(RestaurantSchema), async (req, res) => {
   try {
     const restaurant = req.body as TRestaurant;
+
+    const redisClient = await initializeRedisClient()
+
     const newRestaurant = {
       id: nanoid("10"),
       ...restaurant,
