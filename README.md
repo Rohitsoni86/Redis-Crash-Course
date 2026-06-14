@@ -1,6 +1,6 @@
 # Redis-Crash-Course
-Learning Redis
 
+Learning Redis
 
 # Step 1
 
@@ -13,22 +13,22 @@ docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:lat
 ```
 
 Check container
+
 ```bash
 docker ps
 ```
 
-
-
 Check if it is running
+
 ```bash
 docker logs redis-stack
 ```
 
 Access the Redis CLI
+
 ```bash
 docker exec -it redis-stack redis-cli
 ```
-
 
 # Step 2
 
@@ -44,6 +44,7 @@ get mykey
 # Delete a key
 del mykey
 ```
+
 Data Types in Redis
 
 ## Strings
@@ -60,7 +61,6 @@ get mykey
 # Delete a string
 del mykey
 ```
-
 
 ## Lists
 
@@ -83,7 +83,6 @@ lrange mylist 0 -1
 del mylist
 ```
 
-
 ## Hashes
 
 Hashes are maps of strings to strings.
@@ -102,7 +101,6 @@ hgetall myhash
 del myhash
 ```
 
-
 ## Sets
 
 Sets are unordered collections of unique strings.
@@ -117,7 +115,6 @@ smembers myset
 # Delete the set
 del myset
 ```
-
 
 ## Sorted Sets
 
@@ -134,31 +131,37 @@ zrange myset 0 -1
 del myset
 ```
 
-
 # Step 3 Add the backend node server with redis client
 
-npm init -y 
+npm init -y
 
-npm install express nodemon dotenv zod nanoid redis @types/cors @types/express @types/node tsx typescript cors 
+npm install express nodemon dotenv zod nanoid redis @types/cors @types/express @types/node tsx typescript cors
 
-create the tsconfig.json file 
+create the tsconfig.json file
 
 ---> Checkout TSConfig Cheat Scheet Checkout
 
 --> Add the scripts to the package.json file
 
+--> Also fix this ==> npm install -D ts-node typescript (it will fix the issue of ts-node)
+
 ```json
 {
-    "scripts": {
-        "dev": "nodemon src/server.ts",
-        "start": "tsx src/server.ts"
-    }
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "start": "tsx src/server.ts"
+  }
 }
 ```
 
-
 Create a .env file
+
 ```env
 PORT=3000
 REDIS_URL=redis://localhost:6379
 ```
+
+<!-- Benefits of tsx watch
+Zero Config: It natively resolves ES Modules (ESM) and supports typescript configurations (moduleResolution: NodeNext, .js extension imports in .ts files) without any custom loader registration flags.
+Fast: It utilizes Esbuild under the hood.
+Built-in Watching: It has file watching built-in, meaning you no longer need nodemon for restarting the server. -->
