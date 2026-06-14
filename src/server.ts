@@ -14,11 +14,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(errorHandler);
-
 // Routes
 app.use('/restaurants', restaurantsRouter);
 app.use('/cuisines', cuisinesRouter);
+
+// Error Handler
+app.use(errorHandler);
 
 app.get('/', (req, res) => {
     console.log('Request hit');
