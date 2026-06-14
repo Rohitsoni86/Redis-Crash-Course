@@ -1,2 +1,164 @@
 # Redis-Crash-Course
 Learning Redis
+
+
+# Step 1
+
+Install and Run the Redis Stack on docker
+
+Make sure docker is running first
+
+```bash
+docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
+```
+
+Check container
+```bash
+docker ps
+```
+
+
+
+Check if it is running
+```bash
+docker logs redis-stack
+```
+
+Access the Redis CLI
+```bash
+docker exec -it redis-stack redis-cli
+```
+
+
+# Step 2
+
+Basic Redis commands
+
+```bash
+# Set a value
+set mykey "hello"
+
+# Get a value
+get mykey
+
+# Delete a key
+del mykey
+```
+Data Types in Redis
+
+## Strings
+
+Strings are the most basic data type in Redis.
+
+```bash
+# Set a string
+set mykey "hello"
+
+# Get a string
+get mykey
+
+# Delete a string
+del mykey
+```
+
+
+## Lists
+
+Lists are ordered collections of strings.
+
+```bash
+# Push a value to the list
+lpush mylist "hello"
+
+# Push multiple values to the list
+# lpush mylist "hello" "world"
+
+# Get the list
+lrange mylist 0 -1
+
+# Pop a value from the list
+# lpop mylist
+
+# Delete the list
+del mylist
+```
+
+
+## Hashes
+
+Hashes are maps of strings to strings.
+
+```bash
+# Set a hash
+hset myhash field1 value1 field2 value2
+
+# Get a hash
+hget myhash field1
+
+# Get all hashes
+hgetall myhash
+
+# Delete a hash
+del myhash
+```
+
+
+## Sets
+
+Sets are unordered collections of unique strings.
+
+```bash
+# Add members to the set
+sadd myset member1 member2 member3
+
+# Get the set
+smembers myset
+
+# Delete the set
+del myset
+```
+
+
+## Sorted Sets
+
+Sorted sets are ordered collections of strings with scores.
+
+```bash
+# Add members to the sorted set
+zadd myset 1 "hello" 2 "world" 3 "goodbye"
+
+# Get the sorted set
+zrange myset 0 -1
+
+# Delete the sorted set
+del myset
+```
+
+
+# Step 3 Add the backend node server with redis client
+
+npm init -y 
+
+npm install express nodemon dotenv zod nanoid redis @types/cors @types/express @types/node tsx typescript cors 
+
+create the tsconfig.json file 
+
+---> Checkout TSConfig Cheat Scheet Checkout
+
+--> Add the scripts to the package.json file
+
+```json
+{
+    "scripts": {
+        "dev": "nodemon src/server.ts",
+        "start": "tsx src/server.ts"
+    }
+}
+```
+
+
+Create a .env file
+```env
+PORT=3000
+REDIS_URL=redis://localhost:6379
+```
