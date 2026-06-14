@@ -12,6 +12,33 @@ Make sure docker is running first
 docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
 ```
 
+
+Command Explained
+
+==> ON our OS 2 applications will run on the docker container
+
+==> redis server on 6379 port and its UI on 8001 port
+
+==> See the IMAGE IN public/architecture
+
+==> UI is on [http://localhost:8001](http://localhost:8001)
+
+
+
+SO the basic is when we start the docker and run this above command the docker will pull the redis server iamge and start a container and in it it setups the 2 things 
+1st is the redis server that is normal cli server
+2nd is the UI GUI interface for the Redis to see the visuals of the Redis
+
+Your OS
+ -------> servers ports exposed 
+ ----> Redis Server ---> 6379
+ ----> Redis UI ------> 8001
+
+ docker Container running on your OS
+ -----------> Redis Server ------> 6379
+ -----------> Redis UI --------> 8001
+ 
+
 Check container
 
 ```bash
