@@ -1,9 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import restaurantsRouter from '../routes/restaurants.js';
-import cuisinesRouter from '../routes/cuisines.js';
-import { errorHandler } from '../middlewares/errorHandler.js';
+
 
 dotenv.config();
 
@@ -15,11 +13,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/restaurants', restaurantsRouter);
-app.use('/cuisines', cuisinesRouter);
+
 
 // Error Handler
-app.use(errorHandler);
+
 
 app.get('/', (req, res) => {
     console.log('Request hit');
