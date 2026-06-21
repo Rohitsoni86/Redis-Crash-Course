@@ -1,4 +1,4 @@
-import LoggerFactory from "../utils/logger/LoggerFactory";
+import LoggerFactory from "../utils/logger/LoggerFactory.js";
 import type { NextFunction, Request, Response } from "express";
 
 

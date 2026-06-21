@@ -1,29 +1,30 @@
-import type { Request, Response, NextFunction } from 'express';
-import { AuthService } from '../services/auth.service';
-import { sendOtpSchema } from '../validations/auth.validation';
+import type { Request, Response } from 'express';
+import { sendOtp, verifyOtp } from '../services/auth.service.js';
+import { catchAsync } from '../utils/catchAsync.js';
 
-export class AuthController {
-    static async sendOtp(req: Request, res: Response, next: NextFunction) {
-        try {
-            // Validate payload
-            const validatedData = sendOtpSchema.parse(req.body);
+export const sendOtpHandler = catchAsync(async (req: Request, res: Response) => {
+    // Validation is already handled by middleware
+    const { phone } = req.body;
 
-            // Call service
-            const response = await AuthService.sendOtp(validatedData.phone);
+    // Call functional service
+    const response = await sendOtp(phone);
 
-            // Return success
-            res.status(200).json({
-                status: 'success',
-                data: response,
-            });
-        } catch (error: any) {
-            // Check if it's a Zod validation error
-            if (error.name === 'ZodError') {
-                error.status = 400;
-                error.code = 'VALIDATION_ERROR';
-                error.message = error.errors.map((e: any) => e.message).join(', ');
-            }
-            next(error);
-        }
-    }
-}
+    // Return success
+    res.status(200).json({
+        status: 'success',
+        data: response,
+    });
+});
+
+
+
+export const verifyOtpHandler = catchAsync(async (req: Request, res: Response) => {
+    const { phone, otp } = req.body;
+
+    const response = await verifyOtp(phone, otp);
+
+    res.status(200).json({
+        status: 'success',
+        data: response,
+    });
+});

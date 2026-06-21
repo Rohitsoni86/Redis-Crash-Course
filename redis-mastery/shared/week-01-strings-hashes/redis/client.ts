@@ -1,6 +1,6 @@
 import { createClient } from 'redis';
 import type { RedisClientType } from 'redis';
-import LoggerFactory from '../utils/logger/LoggerFactory';
+import LoggerFactory from '../utils/logger/LoggerFactory.js';
 
 export class RedisService {
     private static instance: RedisService;

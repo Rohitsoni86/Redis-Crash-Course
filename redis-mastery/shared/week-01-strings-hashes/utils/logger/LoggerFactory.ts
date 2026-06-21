@@ -3,8 +3,8 @@
 
 import pino from 'pino';
 import type { Logger, LoggerOptions, Bindings } from 'pino';
-import defaultConfig from './config';
-import { LOG_LEVELS, LEVEL_ORDER, ENVIRONMENTS } from './constants';
+import defaultConfig from './config.js';
+import { LOG_LEVELS, LEVEL_ORDER, ENVIRONMENTS } from './constants.js';
 
 
 

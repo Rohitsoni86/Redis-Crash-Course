@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import requestLogger from '../middlewares/requestLogger';
-import ErrorLogger from '../middlewares/errorLogger';
-import LoggerFactory from '../utils/logger/LoggerFactory';
-import { redisService } from '../redis/client';
-import routes from '../routes/routes';
+import requestLogger from '../middlewares/requestLogger.js';
+import ErrorLogger from '../middlewares/errorLogger.js';
+import LoggerFactory from '../utils/logger/LoggerFactory.js';
+import { redisService } from '../redis/client.js';
+import routes from '../routes/routes.js';
 
 dotenv.config();
 
