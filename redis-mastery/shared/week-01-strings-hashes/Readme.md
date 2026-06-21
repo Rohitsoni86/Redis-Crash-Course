@@ -21,6 +21,26 @@ Strings
 Hashes
 
 
+Business Problem
+       ↓
+System Design
+       ↓
+API Design
+       ↓
+Folder Structure
+       ↓
+Validation
+       ↓
+Redis Key Design
+       ↓
+Service Layer
+       ↓
+Error Handling
+       ↓
+Production Security
+       ↓
+Scaling Discussion
+
 
 
 
